@@ -4,8 +4,8 @@
       <h1>Tarefas</h1>
     </header>
     <div class="container">
-      <input-task @newTask="addTask" />
-      <task-list :todo-list="tasks" />
+      <input-task />
+      <task-list />
     </div>
   </section>
 </template>
@@ -26,6 +26,11 @@ export default {
   methods: {
     addTask (task) {
       this.tasks.push(task)
+      task.id = this.tasks.indexOf(task)
+      console.log(this.tasks)
+    },
+    refreshList (newList) {
+      this.tasks = newList
     }
   }
 }

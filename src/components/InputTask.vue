@@ -20,11 +20,20 @@ export default {
   },
   methods: {
     addTask () {
+      if (this.validateInput()) {
+        let task = this.createTask()
+        this.$store.commit('addTask', {task})
+        this.clearInput()
+      }
+    },
+    validateInput () {
+      return this.newTodoText
+    },
+    createTask () {
       let task = new Task()
       task.completed = false
       task.title = this.newTodoText
-      this.$emit('newTask', task)
-      this.clearInput()
+      return task
     },
     clearInput () {
       this.newTodoText = ''
@@ -48,4 +57,5 @@ export default {
   border-bottom: 1px solid #ddd;
   box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
 }
+
 </style>
